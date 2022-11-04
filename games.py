@@ -40,21 +40,68 @@ def choose_number_game():
 
 def snake_water_gun():
     content_list_snake_water_gun = ["snake", "water", "gun"]
-    snake_water_gun_random_number = random.choice(content_list_snake_water_gun).lower()
-    print(snake_water_gun_random_number)
-    player_input_snake_water_gun = str(input(f"Choose your option {content_list_snake_water_gun} : "))
+    snake_water_gun_random_element = random.choice(content_list_snake_water_gun).lower()
+    print(snake_water_gun_random_element)
     speakFunc("You will play against me, Let's play man")
-    chances_to_play = 10
 
-    while chances_to_play:
+    while True:
+        chances_to_play = 1
         computer_chance = 0
         player_chance = 0
-        if snake_water_gun_random_number == player_input_snake_water_gun:
+        player_input_snake_water_gun = str(input(f"Choose your option {content_list_snake_water_gun} : "))
+
+        if snake_water_gun_random_element == player_input_snake_water_gun:
             player_chance += 1
+            chances_to_play -= 1
             print(f"Aya bro, you got {player_chance}")
 
-        else:
+        elif chances_to_play == 0:
+            print("Something exception")
             break
+
+        elif snake_water_gun_random_element == "snake" and player_input_snake_water_gun == "water":
+            player_chance += 1
+            chances_to_play -= 1
+            print(f"Aya, you got {computer_chance} point")
+
+        elif snake_water_gun_random_element == "water" and player_input_snake_water_gun == "snake":
+            chances_to_play -= 1
+            computer_chance += 1
+            speakFunc(f"Ha. Lol I have {snake_water_gun_random_element} and you {player_input_snake_water_gun}")
+            print(f"Friday got {computer_chance} point")
+
+        elif snake_water_gun_random_element == "water" and player_input_snake_water_gun == "gun":
+            chances_to_play -= 1
+            computer_chance += 1
+            speakFunc(f"Ha. Lol I have {snake_water_gun_random_element} and you {player_input_snake_water_gun}")
+            print(f"Friday got {computer_chance} point")
+
+        elif snake_water_gun_random_element == "gun" and player_input_snake_water_gun == "water":
+            chances_to_play -= 1
+            player_chance += 1
+            print(f"Aya, You got {computer_chance} point")
+
+        elif snake_water_gun_random_element == "snake" and player_input_snake_water_gun == "gun":
+            chances_to_play -= 1
+            player_chance += 1
+            print(f"Aya, You got {computer_chance} point")
+
+        elif snake_water_gun_random_element == "gun" and player_input_snake_water_gun == "snake":
+            chances_to_play -= 1
+            computer_chance += 1
+            speakFunc(f"Ha. Lol I have {snake_water_gun_random_element} and you {player_input_snake_water_gun}")
+            print(f"Friday got {computer_chance} point")
+
+        elif snake_water_gun_random_element == "water" and player_input_snake_water_gun == "gun":
+            chances_to_play -= 1
+            player_chance += 1
+            print(f"Aya, You got {computer_chance} point")
+
+        elif snake_water_gun_random_element == "gun" and player_input_snake_water_gun == "water":
+            chances_to_play -= 1
+            computer_chance += 1
+            speakFunc(f"Ha. Lol I have {snake_water_gun_random_element} and you {player_input_snake_water_gun}")
+            print(f"Friday got {computer_chance} point")
 
 
 if __name__ == "__main__":

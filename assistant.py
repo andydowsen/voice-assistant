@@ -63,6 +63,7 @@ def wishMe():
 def user_to_choice():
     user_wish_statement = str(input("What should i have to do > ")).lower()
     choice_command_string = give_your_command().lower()
+
     if user_wish_statement == "Close":
         speakFunc("I'm exiting from program good bye")
         time.sleep(5)
@@ -70,6 +71,9 @@ def user_to_choice():
     elif user_wish_statement == "i love you":
         speakFunc("I love you too! .")
         exit()
+    elif "wikiguy" in choice_command_string:
+        speakFunc("Wikiguy module is in development")
+
     elif user_wish_statement == "load game":
         speakFunc("Which game would you want to play, ")
         choice_to_game_user_to_choice = choice_command_string
@@ -86,10 +90,9 @@ def user_to_choice():
         elif "number game" in choice_to_game_user_to_choice:
             games.choose_number_game()
             speakFunc("I'll loaded up number game for you. Enjoy boss.")
-
-        # games.choose_number_game()
-        # time.sleep(2)
-        # exit()
+            # games.choose_number_game()
+            # time.sleep(2)
+            # exit()
     else:
         speakFunc("I didn't recognise anything properly")
         time.sleep(1)

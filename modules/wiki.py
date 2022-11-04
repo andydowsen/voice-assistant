@@ -19,7 +19,10 @@ __speak__something("Lullaby")
 def search_content(topic_to_search):
     """
     @ It will search the topic according to the user
-      wants. 
-    """
+      wants. the topic will pull up from the voice 
+      assistant from the user and fetched into this function
+          """
     result_wikipedia_search = wikipedia.search(topic_to_search, result=3)
     print(result_wikipedia_search)
+
+

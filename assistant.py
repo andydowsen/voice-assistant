@@ -22,12 +22,14 @@ def speakFunc(audio):
 
 def give_your_command():
     """
-        Takes the input from the user device microphone and convert it to a string and perform the
-        action according to the user command. Just like a Google voice assistant. The Voice command
+        Takes the input from the user device microphone
+        and convert it to a string and perform the
+        action according to the user command.
+        Just like a Google voice assistant. The Voice command
         sdk is used from `google voice assistants`.
+
     """
     recognise = speech.Recognizer()  # Initialize the recognizer
-
     with speech.Microphone() as source:  # used microphone as the source from the user
         print("Listening...")
         recognise.pause_threshold = 1
@@ -61,33 +63,30 @@ def wishMe():
 
 
 def user_to_choice():
-    user_wish_statement = str(input("What should i have to do > ")).lower()
-    choice_command_string = give_your_command().lower()
+    user_wish_statement = give_your_command().lower()
 
-    if user_wish_statement == "Close":
+    if "close" in user_wish_statement:
         speakFunc("I'm exiting from program good bye")
         time.sleep(5)
         exit()
-    elif user_wish_statement == "i love you":
+    elif "i love you" in user_wish_statement:
         speakFunc("I love you too! .")
         exit()
-    elif "wikiguy" in choice_command_string:
+    elif "wiki" in user_wish_statement:
         speakFunc("Wikiguy module is in development")
 
-    elif user_wish_statement == "load game":
+    elif "load game" in user_wish_statement:
         speakFunc("Which game would you want to play, ")
-        choice_to_game_user_to_choice = choice_command_string
-
         """
             I done changes in this block, if program fails to run then you 
             have to check in this block. because, it could be an error in 
             this block . 
         """
 
-        if "sake water gun" in choice_to_game_user_to_choice:
+        if "sake water gun" in user_wish_statement:
             games.snake_water_gun()
             speakFunc("I'll loaded up snake water gun game for you. Enjoy boss")
-        elif "number game" in choice_to_game_user_to_choice:
+        elif "number game" in user_wish_statement:
             games.choose_number_game()
             speakFunc("I'll loaded up number game for you. Enjoy boss.")
             # games.choose_number_game()
@@ -96,11 +95,8 @@ def user_to_choice():
     else:
         speakFunc("I didn't recognise anything properly")
         time.sleep(1)
-        speakFunc("Bye!")
-        exit()
+        speakFunc("Speak again!")
 
-
-# user_to_choice()
 
 # * give_your_command()
 
@@ -123,7 +119,7 @@ if __name__ == "__main__":
             webbrowser.open_new_tab("https://instagram.com/anshichaudhary80")
             speakFunc("Opening google boss")
 
-        elif "shutdown now" in query_string:
+        elif "shutdown" in query_string:
             speakFunc("I'm going to sleep now")
             break
 
@@ -132,14 +128,12 @@ if __name__ == "__main__":
             speakFunc("Playing music.")
             music = os.listdir(music_directory)
             print(music)
-            music_name = os.listxattr(music[ranodm_index])
-            print(music_name)
             os.startfile(os.path.join(music_directory, music[random_index]))
 
         elif "music" in query_string:
             music_directory = "O:\\About-me\\musics"
             speakFunc("Playing music.")
-            music = os.listdir(music_directory)
+            music = os.listdir(music_directory[random_index])
             print(music)
             os.startfile(os.path.join(music_directory, music[random_index]))
             # ! print(music[random_index])
@@ -151,6 +145,10 @@ if __name__ == "__main__":
         elif "your god" in query_string:
             speakFunc("My sir is my god who develops me")
 
-        elif "open browser computer":
+        elif "open browser computer" in query_string:
             speakFunc("Opening browser computer for you boss")
-            browser.open_new_tab("https://neverinstall.com")
+            webbrowser.open_new_tab("https://neverinstall.com")
+
+        elif "personal space" in query_string:
+            speakFunc("You are in now your personal space, what can i do for you now")
+            user_to_choice()

@@ -1,0 +1,131 @@
+./ Assistant.py
+
+import pyttsx3
+import datetime
+import speech_recognition as speech
+import time
+import random
+import games
+
+random_number = random.randint(1, 10)
+# print(random_number)
+
+engine = pyttsx3.init("sapi5")
+voices = engine.getProperty("voices")
+print(voices)
+engine.setProperty("voice", voices[1].id)
+
+
+def speakFunc(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+
+def wishMe():
+    current_time = int(datetime.datetime.now().hour)
+    if current_time >= 0 and current_time < 12:
+        speakFunc("Good morning! anshu")
+    elif current_time >= 12 and current_time < 12:
+        speakFunc("Good afternoon! anshu")
+    else:
+        speakFunc("Good evening anshu")
+    return_value = speakFunc("I'm zira, What can i do for you")
+
+def user_to_choice():
+    user_wish_statement = str(input("What should i have to do > ")).lower()
+    if user_wish_statement == "Close":
+        speakFunc("I'm exitting from program good bye")
+        time.sleep(5)
+        exit()
+    elif user_wish_statement == "i love you":
+        speakFunc("I love you too! anshu.")
+        exit()
+    elif user_wish_statement == "load game":
+        speakFunc("I'm loading choose a number game... Have fun anshu")
+        games.choose_number_game()
+        time.sleep(2)
+        exit()
+    else:
+        speakFunc("I didn't recognise anything properly")
+        time.sleep(1)
+        speakFunc("Bye!")
+        exit()
+
+
+def give_your_command():
+    """
+    
+        Takes the input from the user device microphone and convert it to a string and perform the
+        action according to the user command. Just like an google voice assistant. The Voice command
+        sdk is used from `google woice assistants`.
+
+    """
+    recognise = speech.Recognizer() # Initialize the recognizer
+
+    with speech.Microphone() as source: # used microphone as the source from the user
+        print("Listening...")
+        recognise.pause_threshold = 1
+        recognise.energy_threshold = 400
+        audio_get = recognise.listen(source)
+        try: # Tries to recognises the user input from the microphone
+            print("Reconising...")
+            query = recognise.recognize_google(audio_get, language="en-in")
+            print(f"user said : {query} ")
+        except Exception as e: # If the module can't recognise the user input then this exception run 
+            print("Say that again!")
+            return "none"
+        else: # If the user didn't done any input then it will throw the else exception with a mess. 
+            print("Sorry! I didn't get anything")
+        return query # returns the microphone query
+
+
+wishMe()
+user_to_choice()
+
+#* give_your_command()
+
+if __name__ == "__main__":
+    print(__name__)
+
+
+./ Games.py
+
+import pyttsx3
+import datetime
+import speech_recognition as speech
+import time
+import random
+import games
+
+random_number = random.randint(1, 10)
+
+engine = pyttsx3.init("sapi5")
+voices = engine.getProperty("voices")
+print(voices)
+engine.setProperty("voice", voices[1].id)
+
+
+def speakFunc(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+
+def choose_number_game():
+    chances_to_play = 10
+    speakFunc("You have 10 chances. good luck!")
+    get_number_input = int(input("Enter your number : "))
+    while True:
+        if get_number_input < random_number:
+            speakFunc("You choose a wrong number! Try again")
+            chances_to_play -= 1
+            get_number_input = int(input("Enter your number : "))
+        elif get_number_input == random_number:
+            speakFunc("You won. Congratulations!")
+            break
+        elif chances_to_play == 0:
+            speakFunc("You lost your chances!")
+            break
+        elif get_number_input > random_number:
+            speakFunc("You choose a wrong number! Try again")
+            chances_to_play -= 1
+            get_number_input = int(input("Enter your number : "))

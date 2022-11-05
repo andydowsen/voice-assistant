@@ -116,7 +116,7 @@ if __name__ == "__main__":
             break
 
         elif "open my friend profile" in query_string:
-            webbrowser.open_new_tab("https://instagram.com/anshichaudhary80")
+            webbrowser.open_new_tab("https://instagram.com")
             speakFunc("Opening google boss")
 
         elif "shutdown" in query_string:

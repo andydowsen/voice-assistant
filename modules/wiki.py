@@ -22,7 +22,12 @@ def search_content(topic_to_search):
       wants. the topic will pull up from the voice 
       assistant from the user and fetched into this function
           """
-    result_wikipedia_search = wikipedia.search(topic_to_search, result=3)
+    result_wikipedia_search = wikipedia.search(topic_to_search, results=6)
+    wikipedia_summary = wikipedia.summary(topic_to_search, sentences=3)
     print(result_wikipedia_search)
+    print(wikipedia_summary)
+    __speak__something(wikipedia_summary)
 
 
+search_topic_wiki = str(input("Enter your topic to search > "))
+search_content(search_topic_wiki)

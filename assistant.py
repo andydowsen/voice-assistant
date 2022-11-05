@@ -8,6 +8,7 @@ import webbrowser
 import os
 import random
 
+
 random_index = random.randint(1, 100)
 
 engine = pyttsx3.init("sapi5")
@@ -152,3 +153,7 @@ if __name__ == "__main__":
         elif "personal space" in query_string:
             speakFunc("You are in now your personal space, what can i do for you now")
             user_to_choice()
+
+        elif "news feed" in query_string:
+            speakFunc("Wait, i'm loading the news feed. Hang on!")
+            speakFunc("Under, Development")

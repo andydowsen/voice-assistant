@@ -18,5 +18,5 @@ Step 3 : Run this command to install all the libraries including tensorflow and 
 
 <code style="width:100%">pip install -r requirements.txt</code>
 
-step 4 : Run the main app and start commanding Friday. <br />
+step 4 : 🏳 Run the main app and start commanding Friday. <br />
 <code> python assistant.py </code>

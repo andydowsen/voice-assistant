@@ -18,18 +18,15 @@ voice_engine.setProperty("rate", 180)
 def _speak_func__audio(audio):
     voice_engine.say(audio)
     voice_engine.runAndWait()
-    if not voice_engine._inLoop():
-        voice_engine.endLoop()
-        voice_engine.inLoop = True
-
-    else:
-        pass
+    voice_engine.endLoop()
+    voice_engine.stop()
 
 
 def append_diet_data():
     user_name = st.text_input("Kindly enter your name")
     voice_engine.startLoop()
     _speak_func__audio("Kindly, enter your name")
+    voice_engine.stop()
 
     try:
         with open(f"./reports/{user_name}.txt", "x", encoding='utf-8') as append_file:

@@ -13,7 +13,8 @@ random_index = random.randint(1, 100)
 
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[0].id)
+engine.setProperty("voice", voices[1].id)
+engine.setProperty("rate", 160)
 
 
 def speakFunc(audio):
@@ -157,3 +158,7 @@ if __name__ == "__main__":
         elif "news feed" in query_string:
             speakFunc("Wait, i'm loading the news feed. Hang on!")
             speakFunc("Under, Development")
+
+        elif "shutdown pc" in query_string:
+            speakFunc("Ok then, I'm gonna shutting down your main host, See u soon")
+            os.system("shutdown /s /t 1")

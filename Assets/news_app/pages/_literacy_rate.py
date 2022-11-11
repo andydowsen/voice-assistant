@@ -1,36 +1,52 @@
 import streamlit as st
-import random
-import numpy as np
 import pandas as pd
+import numpy as np
 import pyttsx3
-import asyncio
 
-engine = pyttsx3.init("sapi5")
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[0].id)
-
-
-async def speakFunc(audio):
-    engine.say(audio)
-    engine.runAndWait()
-    engine.endLoop()
+voice_engine = pyttsx3.init("sapi5")
+voice_engine__voices = voice_engine.getProperty("voices")
+voice_engine_set_voice = voice_engine.setProperty("voice", voice_engine__voices[1].id)
+voice_engine.setProperty("rate", 160)
 
 
-random_Number_Graph = random.randint(1, 100)
+def __speak_funC__Audio(audio):
+    if not voice_engine.inLoop:
+        voice_engine.say(audio)
+        voice_engine.runAndWait()
+        voice_engine.endLoop()
+        voice_engine.stop()
+
+    elif voice_engine.inLoop:
+        voice_engine.runAndWait()
+        voice_engine.endLoop()
+        voice_engine.stop()
 
 
-async def graph_visualization():
-    st.title("Current, literacy rate")
-    random_chart = pd.DataFrame(
-        np.random.randn(10, 6),
-        columns=["Ukraine", "Japan", "China", "Portugal", "India", "South Korea"]
+def _sidebar_data__():
+    st.sidebar.selectbox(
+        "How would you like to be contacted?",
+        ("Email", "Home phone", "Mobile phone")
     )
-    st.area_chart(random_chart)
-    async_audio = await asyncio.gather(speakFunc(audio="Streams"))
-    asyncio.run(async_audio)
+
+    with st.sidebar:
+        st.radio(
+            "Choose a shipping method",
+            ("Standard (5-15 days)", "Express (2-5 days)")
+        )
 
 
-asyncio.run(graph_visualization())
+def __chart_visualization():
+    st.header("Current, Literacy rate")
+    chart_data = pd.DataFrame(
+        np.random.randn(50, 5),
+        columns=["India", "China", "Japan", "North Korea", "South Korea"])
+
+    st.bar_chart(chart_data)
+    __speak_funC__Audio("Chart visualization")
 
 
-engine.endLoop()
+__chart_visualization()
+_sidebar_data__()
+
+if __name__ == "__main__":
+    print(__name__)

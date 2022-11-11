@@ -8,3 +8,4 @@ st.caption("Some content is here")
 
 sidebar_headline = st.sidebar.title("Friday,")
 root_component.streamLit_sidebar()
+

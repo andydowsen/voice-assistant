@@ -159,6 +159,6 @@ if __name__ == "__main__":
             speakFunc("Wait, i'm loading the news feed. Hang on!")
             speakFunc("Under, Development")
 
-        elif "shutdown pc" in query_string:
-            speakFunc("Ok then, I'm gonna shutting down your main host, See u soon")
+        elif "turn off" in query_string:
             os.system("shutdown /s /t 1")
+            speakFunc("Ok then, I'm gonna shutting down your main host, See u soon")

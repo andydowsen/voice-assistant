@@ -7,9 +7,9 @@ import wikipedia
 import webbrowser
 import os
 import random
+from Assets.webcam.webcam_openCv import __open__webcam
 
-
-random_index = random.randint(1, 100)
+random_index = random.randint(1, 50)
 
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
@@ -106,7 +106,8 @@ if __name__ == "__main__":
     print(__name__)
     wishMe()
     while True:
-        query_string = give_your_command().lower()
+        # query_string = give_your_command().lower()
+        query_string = input("enter your request : ")
 
         if "wikipedia" in query_string:
             speakFunc("Searching wikipedia...")
@@ -132,14 +133,6 @@ if __name__ == "__main__":
             print(music)
             os.startfile(os.path.join(music_directory, music[random_index]))
 
-        elif "music" in query_string:
-            music_directory = "O:\\About-me\\musics"
-            speakFunc("Playing music.")
-            music = os.listdir(music_directory[random_index])
-            print(music)
-            os.startfile(os.path.join(music_directory, music[random_index]))
-            # ! print(music[random_index])
-
         elif "time" in query_string:
             current_time = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
             speakFunc(f"Boss, the current time is : {current_time}")
@@ -150,6 +143,10 @@ if __name__ == "__main__":
         elif "open browser computer" in query_string:
             speakFunc("Opening browser computer for you boss")
             webbrowser.open_new_tab("https://neverinstall.com")
+
+        elif "open camera" in query_string:
+            speakFunc("Opening webcam, please be patient")
+            __open__webcam()
 
         elif "personal space" in query_string:
             speakFunc("You are in now your personal space, what can i do for you now")
@@ -162,3 +159,6 @@ if __name__ == "__main__":
         elif "turn off" in query_string:
             os.system("shutdown /s /t 1")
             speakFunc("Ok then, I'm gonna shutting down your main host, See u soon")
+
+
+

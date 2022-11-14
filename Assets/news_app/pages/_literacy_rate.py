@@ -1,23 +1,22 @@
-import streamlit as st
-import pandas as pd
+import time
+
 import numpy as np
+import pandas as pd
 import pyttsx3
+import streamlit as st
 
 voice_engine = pyttsx3.init("sapi5")
 voice_engine__voices = voice_engine.getProperty("voices")
 voice_engine_set_voice = voice_engine.setProperty("voice", voice_engine__voices[1].id)
-voice_engine.setProperty("rate", 160)
+voice_engine.setProperty("rate", 150)
 
 
 def __speak_funC__Audio(audio):
-    if not voice_engine.inLoop:
-        voice_engine.say(audio)
-        voice_engine.runAndWait()
-        voice_engine.endLoop()
-        voice_engine.stop()
+    time.sleep(7)
+    voice_engine.say(audio)
+    voice_engine.runAndWait()
 
-    elif voice_engine.inLoop:
-        voice_engine.runAndWait()
+    if voice_engine.inLoop:
         voice_engine.endLoop()
         voice_engine.stop()
 
@@ -42,7 +41,6 @@ def __chart_visualization():
         columns=["India", "China", "Japan", "North Korea", "South Korea"])
 
     st.bar_chart(chart_data)
-    __speak_funC__Audio("Chart visualization")
 
 
 __chart_visualization()

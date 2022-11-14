@@ -115,12 +115,12 @@ if __name__ == "__main__":
             results = wikipedia.summary(query_str, sentences=2)
             speakFunc("According to wikipedia...")
             print(results)
-            speakFunc(results)
+            speakFunc(f"{results} That's which i got from wiki")
             break
 
         elif "open my friend profile" in query_string:
             webbrowser.open_new_tab("https://instagram.com")
-            speakFunc("Opening google boss")
+            speakFunc("Opening your friend profile boss")
 
         elif "shutdown" in query_string:
             speakFunc("I'm going to sleep now")

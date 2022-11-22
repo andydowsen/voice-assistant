@@ -7,6 +7,7 @@ import wikipedia
 import webbrowser
 import os
 import random
+from functools import lru_cache
 from Assets.webcam.webcam_openCv import __open__webcam
 
 random_index = random.randint(1, 50)
@@ -17,9 +18,13 @@ engine.setProperty("voice", voices[1].id)
 engine.setProperty("rate", 160)
 
 
+@lru_cache(maxsize=30)
 def speakFunc(audio):
     engine.say(audio)
     engine.runAndWait()
+
+
+lru_cache(maxsize=100)
 
 
 def give_your_command():
@@ -56,12 +61,12 @@ def wishMe():
     """
     current_time = int(datetime.datetime.now().hour)  # converted the date time into integer
     if 0 <= current_time < 12:  # If time is under 12 PM
-        speakFunc("Good morning! ")
+        speakFunc("Good morning! boss")
     elif current_time >= 12 and current_time < 12:  # If time is Over 12 PM and smaller 12 AM ( 12hr Timeframe )
-        speakFunc("Good afternoon! ")
+        speakFunc("Good afternoon! boss")
     else:  # returns the evening.
-        speakFunc("Good evening ")
-    speakFunc("I'm friday, ")
+        speakFunc("Good evening! boss")
+    speakFunc("I'm Friday now i'm initialised, Let's begin, ")
 
 
 def user_to_choice():
@@ -159,6 +164,3 @@ if __name__ == "__main__":
         elif "turn off" in query_string:
             os.system("shutdown /s /t 1")
             speakFunc("Ok then, I'm gonna shutting down your main host, See u soon")
-
-
-

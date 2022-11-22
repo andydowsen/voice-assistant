@@ -1,5 +1,4 @@
 import time
-
 import numpy as np
 import pandas as pd
 import pyttsx3
@@ -12,14 +11,13 @@ voice_engine.setProperty("rate", 150)
 
 
 def __speak_funC__Audio(audio):
-    time.sleep(7)
-    voice_engine.say(audio)
-    voice_engine.runAndWait()
+    if not voice_engine.inLoop:
+        voice_engine.say(audio)
+        voice_engine.runAndWait()
 
-    if voice_engine.inLoop:
+    elif voice_engine.inLoop:
         voice_engine.endLoop()
         voice_engine.stop()
-
 
 def _sidebar_data__():
     st.sidebar.selectbox(
@@ -45,6 +43,7 @@ def __chart_visualization():
 
 __chart_visualization()
 _sidebar_data__()
+__speak_funC__Audio("Here you go")
 
 if __name__ == "__main__":
     print(__name__)

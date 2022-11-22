@@ -11,7 +11,6 @@ root_component.streamLit_sidebar()
 
 def __header__viewport():
     st.title("Summaries")
-    __header_Card()
 
 
 __header__viewport()

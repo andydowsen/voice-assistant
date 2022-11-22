@@ -19,6 +19,7 @@ def __speak_funC__Audio(audio):
         voice_engine.endLoop()
         voice_engine.stop()
 
+
 def _sidebar_data__():
     st.sidebar.selectbox(
         "How would you like to be contacted?",

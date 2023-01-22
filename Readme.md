@@ -1,4 +1,6 @@
 
+<img src="https://www.stevenvanbelleghem.com/wp-content/uploads/2020/12/19IcqVZ48A0tQba1-F_yIpg.jpeg" height="50%" />
+
 # 🏳♨ Friday, Assistant
 
 The python assistant whose name is inspired from the television movie - Iron Man. Which operates and manages the normal work of a user like playing music, opening browsers, wikipedia searches, etc. In coming time the module will function more work according to the needs of the users.
